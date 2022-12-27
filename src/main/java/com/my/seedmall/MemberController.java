@@ -1,5 +1,7 @@
 package com.my.seedmall;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -42,5 +44,13 @@ public class MemberController {
 		m.addAttribute("message", str);
 		m.addAttribute("loc", loc);
 		return "msg";
+	}
+	
+	@GetMapping("/admin/memberList")
+	public String memberList(Model m) {
+		List<MemberVO> userArr=MemberService.listUser(null);
+		
+		m.addAttribute("userArr", userArr);
+		return "/member/list";
 	}
 }
